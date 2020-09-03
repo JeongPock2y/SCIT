@@ -26,7 +26,7 @@ public class Main9 {
 		}
 		
 			//System.out.printf("%d,%d,%d",num1,num2,num3);
-			System.out.println(a+"  "+b+"  "+c);
+			System.out.println(num1+"  "+num2+"  "+num3);
 			
 		}
 	}

@@ -4,11 +4,11 @@ public class Main9 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("1¹øÂ° Á¤¼ö ÀÔ·Â :");
+		System.out.println("1ë²ˆì§¸ ì •ìˆ˜ ìž…ë ¥ :");
 		int num1 = sc.nextInt();
-		System.out.println("2¹øÂ° Á¤¼ö ÀÔ·Â :");
+		System.out.println("2ë²ˆì§¸ ì •ìˆ˜ ìž…ë ¥ :");
 		int num2 = sc.nextInt();
-		System.out.println("3¹øÂ° Á¤¼ö ÀÔ·Â :");
+		System.out.println("3ë²ˆì§¸ ì •ìˆ˜ ìž…ë ¥ :");
 		int num3 = sc.nextInt();
 		 
 		if(num1<num2) {
@@ -25,7 +25,8 @@ public class Main9 {
 			num2 = a;
 		}
 		
-			System.out.printf("%d,%d,%d",num1,num2,num3);
+			//System.out.printf("%d,%d,%d",num1,num2,num3);
+			System.out.println(a+"  "+b+"  "+c);
 			
 		}
 	}

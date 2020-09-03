@@ -3,33 +3,40 @@ import java.util.Scanner;
 public class Main7 {
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("¿ø ´ÜÀ§ ±İ¾× ÀÔ·Â :");
-		int  won = sc.nextInt();//¿ø
-		if(won<0) {
-			System.out.println("Àß¸ø ÀÔ·ÂÇß½À´Ï´Ù.");
-		}else {
-			System.out.println("È¯ÀüÇÒ È­Æó(1:´Ş·¯, 2.¿£È­,3:À¯·ÎÈ­)");
-			int menu = sc.nextInt();
-			switch(menu) {
-			case 1 : 
-				double dollar = won*0.0082;
-				System.out.println(won+"¿ø Àº"+dollar+"´Ş·¯ÀÔ´Ï´Ù.");
-				break;
-			case 2 : 
-				double enn = won*0.08824;
-				System.out.println(won+"¿ø Àº"+enn+"¿£È­ÀÔ´Ï´Ù.");
-				break;
-			case 3 : 
-				double euro = won*0.0078;
-				System.out.println(won+"¿ø Àº"+euro+"À¯·ÎÈ­ÀÔ´Ï´Ù.");
-				break;
-			default :
-				System.out.println("Àà¼ÒÀÔ·ÂÇß¾î");
-				
-			}
-			
-		}
-	}
+		Scanner input = new Scanner(System.in);
+		double won = 1000;  //1000ì›
+		double dollar = 0.82; //1000ì› -> ë‹¬ëŸ¬
+		double yen = 88.24;  //1000ì› -> ì—”í™”
+		double euro = 0.78;  //1000ì› -> ìœ ë¡œí™”
 
-}
+		int choice;   
+		int incur;
+		double outcur;    
+
+		System.out.print("ì› ë‹¨ìœ„ ê¸ˆì•¡ ì…ë ¥ : ");
+		incur = input.nextInt();  
+
+		if (incur < 0) {
+			System.out.println("ì˜ëª» ì…ë ¥í–ˆìŠµë‹ˆë‹¤.");    
+			System.exit(0);   
+		}      
+
+		System.out.print("í™˜ì „í•  í™”í (1:ë‹¬ëŸ¬, 2:ì—”í™”, 3:ìœ ë¡œí™”) : ");   
+		choice = input.nextInt(); 
+
+		switch (choice) {
+			case 1:
+				outcur = incur * dollar / won;
+				System.out.println(incur + "ì›ì€ " + outcur + "ë‹¬ëŸ¬ì…ë‹ˆë‹¤.");
+				break;    
+			case 2:     
+				outcur = incur * yen / won;
+				System.out.println(incur + "ì›ì€ " + outcur + "ì—”ì…ë‹ˆë‹¤.");
+				break;    
+			case 3:     
+				outcur = incur * euro / won;     
+				System.out.println(incur + "ì›ì€ " + outcur + "ìœ ë¡œì…ë‹ˆë‹¤.");
+				break;    
+			default:      
+				System.out.println("ì˜ëª» ì…ë ¥í–ˆìŠµë‹ˆë‹¤.");
+		}

@@ -1,14 +1,15 @@
+
 import java.util.Scanner;
 
 public class Main2 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		System.out.print("Á¦Ç°ÀÇ °¡°İÀ» ÀÔ·Â :");
-		double a = sc.nextInt();
-		System.out.print("Á¦Ç°ÀÇ ±¸¸Å°¡ ÀÔ·Â :");
-		double b = sc.nextInt();
-		System.out.println("ÇÒÀÎÀ²Àº :"+(b/a)*100+"%");
+		System.out.print("ì œí’ˆì˜ ê°€ê²©ì„ ì…ë ¥ :");
+		int a = sc.nextInt();
+		System.out.print("ì œí’ˆì˜ êµ¬ë§¤ê°€ ì…ë ¥ :");
+		int b = sc.nextInt();
+		System.out.println("í• ì¸ìœ¨ì€ :"+(a-b)/((double)a)*100+"%");
 	}
 
 }

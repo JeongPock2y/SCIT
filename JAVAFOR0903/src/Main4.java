@@ -3,19 +3,22 @@ import java.util.Scanner;
 public class Main4 {
 
 	public static void main(String[] args) {
-		int sum=0;
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Ã¹ ¹øÂ° Á¤¼ö :");
-		int n1 = sc.nextInt();
-		System.out.print("µÎ ¹øÂ° Á¤¼ö :");
-		int n2 = sc.nextInt();
-		
-		for(int i=n1; i<=n2; i++) {
-			sum +=i;
-		}
-		System.out.println(n1+"¿¡¼­"+n2+"±îÁöÀÇ ÇÕÀº :"+sum);
-		
+		Scanner input = new Scanner(System.in);
+int start, end, temp;
+int sum = 0;
 
-	}
+System.out.print("ì²« ë²ˆì§¸ ì •ìˆ˜ ìž…ë ¥ : ");
+start = input.nextInt(); 
+System.out.print("ë‘ ë²ˆì§¸ ì •ìˆ˜ ìž…ë ¥ : ");
+end = input.nextInt();
 
-}
+if (start > end) {    
+	temp = start;
+	start = end;
+	end = temp;   
+}      
+
+for (int i = start; i <= end; i++) {
+	sum += i;   
+}      
+System.out.println(start + " ~ " + end + "ê¹Œì§€ì˜ í•©ê³„ : " + sum);  

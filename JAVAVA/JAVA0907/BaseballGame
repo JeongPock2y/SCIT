@@ -1,0 +1,65 @@
+import java.util.Random;
+import java.util.Scanner;
+
+class BaseballGame {
+	public static void main(String[] args) {
+		Random random   = new Random();
+		Scanner scanner = new Scanner(System.in);
+
+		int[] baseball = new int[3];
+		int[] answer   = new int[3];
+
+		int strike, ball;
+		strike = ball = 0;
+
+		// 중복되지 않은 데이터 발생시켜 넣기
+		// 일단 발생시켜서 배열 안에 데이터를 넣는다.
+		for (int i=0;i<baseball.length; ++i ) {
+			baseball[i] = random.nextInt(9) + 1;
+
+			// 현재 배열번호의 방과 맨 앞의 방까지 비교해서 만약 같은데이터가 발생되었다면  
+			// 그 방에는 데이터를 다시 발생시켜 넣는다. 
+			for(int j=i-1; j>=0; j--) {
+				if(baseball[i] == baseball[j]) {
+					i--;
+					break;
+				}
+			}
+		}
+
+		// 출력
+		for(int i=0; i<baseball.length; i++){
+			System.out.print(baseball[i] + " ");
+		}
+		System.out.println();
+
+		// 사용자에게 3개의 데이터를 입력받아 answer배열에 넣는다.
+		while(true) {
+			System.out.print("3개의 정수를 연달아 입력 : ");
+			for(int i=0; i<answer.length; i++) {
+				answer[i] = scanner.nextInt();
+			}
+
+			// 스트라익인지 볼인지 판별하는 프로그램
+			for(int i=0; i<answer.length; ++i) {
+				for(int j=0; j<answer.length; j++) {
+					if(answer[i] == baseball[j]) {
+						if (i == j) strike++;
+						else ball++;
+
+					}
+				}
+			}
+
+			System.out.println("성적 : " + strike + "스트라익 " + ball + "볼");
+			if(strike == 3) break;
+			
+			// 변수를 초기화
+			strike = 0;
+			ball = 0;
+		}
+
+		System.out.println("\n<<<< 게임 종료 >>>>");
+
+	}
+}

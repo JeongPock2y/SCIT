@@ -10,7 +10,7 @@ public class Main11 {
 		while(true) {
 			
 			 
-			System.out.print("Á¤¼ö ÀÔ·Â : ");
+			System.out.print("ì •ìˆ˜ ìž…ë ¥ : ");
 			a = sc.nextInt();
 			
 			if(a!=0) {

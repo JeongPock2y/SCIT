@@ -1,3 +1,4 @@
+package JAVA0900;
 ;
 
 public class Main6 {

@@ -1,3 +1,4 @@
+package JAVA0900;
 public class Student {
 	
 	String name;						//학생 이름

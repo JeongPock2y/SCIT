@@ -1,3 +1,4 @@
+package JAVA0900;
 import java.util.Scanner;
 
 public class Main8 {

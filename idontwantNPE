@@ -1,0 +1,301 @@
+NullPointException(NPE)
+
+
+
+[정의] - null 때문에 발생하는 Runtime Exception 
+
+
+
+앞으로 NPE라고 줄여 쓴 부분은 다 NullPointException으로 보면 된다.
+
+
+
+
+
+▶ NullPointException이 가장 큰 문제인 이유
+
+
+
+ - null자체의 의미가 모호해 다양한 파생 에러 발생
+
+
+
+ - 에러 발생 이후 디버깅이 매우 어렵다
+
+
+
+▶ NullpointException을 발견하고 수정하는 것도 중요하지만, Nullpoint Exception을 예방할 수 있도록 처음부터 개발하는 것도 중요하다.
+
+
+
+
+
+예방 및 해결 방법
+
+
+
+▶ 1. null Parameter를 넘기지 말자.
+
+
+
+ - 뒷단에서 방어로직을 짜 놓는다 하더라도 "의미 없는 null"은 parameter로 넘기지 않도록 한다.
+
+ - 의미없는 null로 인해 쓸데없는 null체크도 해줘야 하며, 파생 오류 처리가 발생하게 된다.
+
+
+
+ex) NPE로 인한 ArithmeticException 발생
+
+// 화면에서 size라는 parameter를 넘기는 case
+// 혹시 null이 넘어오게 되면 기본형(int)이므로 default 0선언 (혹시 아니라면 알려주세요)
+int size = param.getSize();
+
+// (숫자 / 0)이므로 /0때문에 ArithmeticException 발생
+totalPages = (int) (totalCnt / size); 
+
+
+▶ 2. null여부 비교 처리 추가
+
+ 
+
+ - 대부분 개발자들이 "NPE" 예방을 위해 사용하고 있는 방법
+
+
+
+ex) 기본 예시
+
+String a = null;
+System.out.println(a.indexOf("갓"));
+
+/******* 결과 *******/
+Exception in thread "main" java.lang.NullPointerException
+
+String a = null;
+if(a != null){
+	System.out.println(a.indexOf("갓"));
+}
+
+
+▶ 3. 문자열 비교시 equlas 문자열을 먼저 위치 하자.(또는 Constants 사용하자)
+
+ - String 문자열은 기본형이 아니다. 객체이기 때문에 문자열 비교를 위해 "equals" 메서드를 사용한다.
+ex) equals 사용 예시
+public static void main(String[] args) {
+	String a = new String("god");
+
+	System.out.println("1번째============");
+	if (a == "god") {
+		System.out.println("참");
+	} else {
+		System.out.println("거짓"); // 거짓출력
+	}
+
+	System.out.println("2번째============");
+	if (a.equals("god")) {
+		System.out.println("equals => 참"); // 참출력
+	} else {
+		System.out.println("equals => 거짓");
+	}
+}
+
+/******* 결과 *******/
+1번째============
+거짓
+2번째============
+equals => 참
+
+이때 코딩 습관을 잘 들여 놓으면 적어도 "NPE"를 피할 수 있다.
+설명하기 전에 먼저 다음 예를 보도록 하자.
+
+ex) NPE를 발생할 수 있는 코딩 예시
+public static void main(String[] args) {
+
+	String a = null;
+
+	System.out.println("1번째============");
+	if (a == "god") {
+		System.out.println("참");
+	} else {
+		System.out.println("거짓"); //거짓 출력
+	}
+
+	System.out.println("2번째============");
+	if (a.equals("god")) { // NPE 발생! 
+		System.out.println("equals => 참");
+	} else {
+		System.out.println("equals => 거짓");
+	}
+}
+
+/******* 결과 *******/
+1번째============Exception in thread "main" 
+거짓
+2번째============
+java.lang.NullPointerException
+
+a의 변수가 null인경우 "NPE"가 발생한다.
+
+null은 객체가 아니기 때문에 당연히 "equlas" 라는 메서드도 없기 때문이다.
+
+
+
+그럼 다음 예를 살펴 보자.
+
+public static void main(String[] args) {
+	String a = null;
+
+	if ("god".equals(a)) { // NPE 발생하지 않음
+		System.out.println("equals => 참");
+	} else {
+		System.out.println("equals => 거짓");
+	}
+}
+
+/******* 결과 *******/
+equals => 거짓
+
+"비교의 주체가 문자열"부터 주어진다면 "NullPointException"이 발생하지 않는다.
+
+결국 순서만 바꿨음에도 적어도 "NullPointException"을 피할 수 있게 된다.
+
+
+
+정리해보면 문자열 비교는 "non-null String 기준으로 비교" 하는 것이 좋다.
+
+"비교의 주체가 문자열"이 오도록 하거나, "Constants 등을 활용" 하여 코딩 하는 것을 추천 한다.
+
+
+
+
+
+▶ 4. toString() 대신 => valueOf() 사용
+
+ 
+
+먼저 toString의 다음 예를 보도록 하자.
+
+public static void main(String[] args) {
+	Integer a = 1;
+	System.out.println(a.toString());
+
+	a = null;
+	System.out.println(a.toString());
+}
+
+/******* 결과 *******/
+1
+Exception in thread "main" java.lang.NullPointerException
+a라는 변수에 null이 오게되는 경우 당연히 "NullPointerException"이 발생한다.
+
+그럼 "valueOf()"를 사용해 보자.
+
+public static void main(String[] args) {
+	Integer a = null;
+	System.out.println(String.valueOf(a));
+}
+/******* 결과 *******/
+null
+
+NullException을 발생을 피할 수 있게 된다.
+
+
+▶ 5. Chaining 메소드 호출 자제하기
+
+
+"메소드 체이닝(Method Chaining)" 이라는 패턴이 있다.
+
+쉬운 예를 들어 
+
+
+
+EX) 객체.메소드().메소드().메소드(); 
+
+
+
+위와 같은 구조이며 이렇게 코드를 작성하면 작성 코드량이 현저하게 줄어든다.
+
+하지만 이런 체이닝 메소드에서 "NPE"가 발생하면 정말 디버깅 하기 어렵다.
+
+
+
+ex) 기본 예시
+
+String polcValCont = moStorePolicyService.getStorePolcBase(polcCd).getPolcValCont();
+
+
+다음 메서드에서 혹시 moStorePolicyService.getStorePolcBase(polcCd) => 중간 메서드에서 혹시 null이라는 결과가 나온다면
+
+null.getPolcValCount(); 라는 메서드를 호출하는 것과 같은 상황이 발생한다.
+
+당연히 이러한 경우도 "NPE"가 발생한다.
+
+
+
+이런 경우 Stack Trace에서도 해당 오류 발생 line 위치만 출력해주기 때문에 중간메서드인지, 마지막 메서드인지 어디에서 왜 에러가 발생했는지 디버깅 하기 어렵다.
+
+
+
+
+
+▶ 6. Apache Commons에서 제공하는 StringUtils 사용하기
+
+
+
+"org.apache.commons.lang.StringUtils" 에는 매우 유용한 기능이 많다.
+
+지금은 기능에대한 설명은 아니니 "NPE 방지"와 관련된 내용만 몇개 적어보겠다.
+
+public static void main(String[] args) {
+	System.out.println(StringUtils.isEmpty(null)); //true
+	System.out.println(StringUtils.equals("1", null)); //false
+	System.out.println(StringUtils.equals(null, "1")); //false
+	System.out.println(StringUtils.indexOf("갓", null)); //-1
+	System.out.println(StringUtils.indexOf(null, "갓")); //-1
+	System.out.println(StringUtils.upperCase(null)); //null
+}
+/******* 결과 *******/
+true
+false
+false
+-1
+-1
+null
+
+다음 예를 보면 더 이해하기 쉬울 것 같다.
+String a = "댐엠~~!! 갓";
+System.out.println(a.indexOf("갓")); // 7
+
+System.out.println(StringUtils.indexOf(a, "갓")); // 7
+
+String b = null;
+System.out.println(b.indexOf("갓")); // NPE 발생
+
+/******* 결과 *******/
+7
+7
+Exception in thread "main" java.lang.NullPointerException
+
+
+▶ 7. Spring을 사용하고 있다면 @NotNull 사용하자.
+
+
+
+당연히 null을 넘기지 않는 것이 좋지만 만약을 대비하여 Domain(DTO, model)에 @NotNull 어노테이션을 지정하자.
+
+
+
+
+
+※ null로 인해 발생된 에러는 시간이 지날수록, 자신이 개발한 소스가 아닌 경우 더욱 더 디버깅 하기 어려워 진다.
+
+
+
+null이 발생하는게 오류가 아닐 수 도 있고, 오히려 참 일수도 있고, null인경우 또다른 어떤 의미를 내포하고 있는지 판단하기 어렵다.
+
+
+
+즉, 처음부터 NPE를 발생시키지 않도록 코딩하면 자연스럽게 코드의 품질이 향상될 것 이다.
+
+
+
+출처: https://goddaehee.tistory.com/126 [갓대희의 작은공간]

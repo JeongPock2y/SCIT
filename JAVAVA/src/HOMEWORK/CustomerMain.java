@@ -18,11 +18,11 @@ public class CustomerMain {
 			System.out.println("3. ��ü���");
 			System.out.println("4. ���α׷� ����");
 			System.out.println("=========*==========");
-			Customer customer = new Customer();
 			menu = sc.nextInt();
 			// ���� ȭ��
 			switch (menu) {
 			case 1:
+				Customer customer = new Customer();
 				if (count >= cArray.length) {
 					System.out.println("�ִ� 10000������� �Է��� �����մϴ�.");
 					break;
@@ -57,9 +57,8 @@ public class CustomerMain {
 							System.out.println("��ġ : " + cArray[i].getPlace());
 						} else {
 							System.out.println("�˻������ ã�� �� �����ϴ�.");
-							break;
 						}
-					}
+					}break;
 				
 				// ��ü���ȭ��
 			case 3:

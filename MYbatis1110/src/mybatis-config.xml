@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- DB접속정보 값을 가지고 있는 파일 설정 -->
+	<properties resource="db.properties" />
+
+	<!-- Java Class에 대한 alias(별칭) 지정type 자바파일 alias xml파일 -->
+	<!-- xml에서 사용할 자바 클래스 를 여기에 써줌  -->
+	<!-- 기본적으로 vo클래스를 등록한다  -->
+	<typeAliases>
+		<typeAlias type="test.vo.PersonVO" alias="personVo"/>
+	</typeAliases>
+	
+	<!-- DB접속 정보 셋팅 -->
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<!-- 이하 내용 4항목이 db.properties에 내용 -->
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- Mapper 파일 include -->
+	<!-- Mapper란 sql문 실행 기능 자바에서 실행하고자하는 sql문을  매퍼가가지고이씀 -->
+	<!-- 아래 personMapper.xml에 내가 넣고자하는 sql문이 들어있음 -->
+	<mappers>
+		<mapper resource="personMapper.xml"/>
+	</mappers>
+	
+</configuration>

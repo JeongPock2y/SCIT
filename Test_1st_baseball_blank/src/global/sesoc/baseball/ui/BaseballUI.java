@@ -14,7 +14,6 @@ import global.sesoc.baseball.vo.Player;
 public class BaseballUI {
 	Scanner sc = new Scanner(System.in);
 	BaseballManager manager = new BaseballManager();
-
 	/**
 	 * »ý¼ºÀÚ
 	 */

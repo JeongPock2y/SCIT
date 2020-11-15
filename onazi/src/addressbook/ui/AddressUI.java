@@ -104,7 +104,7 @@ public class AddressUI {
 		String name = scan.nextLine();
 		AddressVO vo = manager.getAddress(name);
 		if (vo == null) {
-			System.err.println("*알림 검색결과가 없습니다.*");
+			System.out.println("*알림 검색결과가 없습니다.*");
 		} else {
 			System.out.println(vo);
 		}

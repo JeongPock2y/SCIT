@@ -26,7 +26,9 @@ public class BaseballManager implements AbstractBaseballManager {
 
 	@Override
 	// 이름 검색 할때
+	//이름이 있ㄴ
 	public Player searchId(String id) {
+		
 		for (int i = 0; i < playerList.size(); i++) {
 			if (playerList.get(i).getName().equals(id)) {
 				return playerList.get(i);

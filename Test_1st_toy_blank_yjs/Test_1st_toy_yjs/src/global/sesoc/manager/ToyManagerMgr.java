@@ -67,27 +67,28 @@ public class ToyManagerMgr implements ToyManager{
 	public ArrayList<Toy> printToyInfo(int type) {
 		ArrayList<Toy> list = new ArrayList<>();
 		Toy toy = null;
-		for (int i = 0; i < list.size(); i++) {
-			toy = list.get(i);
-			if (type == 1) {
-				list.add(toy);
-			}
-			else if (type == 2) {
-				if (toy instanceof Bicycle) {
-					list.add(toy);
-				}
-			}
-			else if (type == 3) {
-				if (toy instanceof Drone) {
-					list.add(toy);
-				}
-			}
-			else if (type == 4) {
-				if (toy instanceof GameConsole) {
-					list.add(toy);
-				}
-			}
-	}
+//		for (int i = 0; i < list.size(); i++) {
+//			toy = list.get(i);
+//			
+//			if (type == 1) {
+//				list.add(toy);
+//			}
+//			else if (type == 2) {
+//				if (toy instanceof Bicycle) {
+//					list.add(toy);
+//				}
+//			}
+//			else if (type == 3) {
+//				if (toy instanceof Drone) {
+//					list.add(toy);
+//				}
+//			}
+//			else if (type == 4) {
+//				if (toy instanceof GameConsole) {
+//					list.add(toy);
+//				}
+//			}
+//	}
 		return list;
 
 

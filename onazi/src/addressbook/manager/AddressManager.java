@@ -26,13 +26,11 @@ public class AddressManager {
 	public void addAddress(AddressVO vo) {
 		list.add(vo);
 	}	
-	
 	/**
 	 * 전체 주소 정보 리스트를 리턴한다.
 	 * @return 주소정보 객체들이 저장된 리스트
 	 */
 	public ArrayList<AddressVO> getList() {
-			
 		return list;
 	}
 	/**
@@ -42,8 +40,6 @@ public class AddressManager {
 	 */
 	public AddressVO getAddress(String name) {
 		for (int i = 0;i < list.size(); i++) {
-			//저장된 리스트의 객체 정보중 이름을 꺼내서 
-			//입력된 이름과 같은지를 비교하는 구문
 			if(list.get(i).getName().equals(name)) {
 				return list.get(i);
 			}

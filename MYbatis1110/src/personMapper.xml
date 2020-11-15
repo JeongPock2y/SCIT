@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 회원정보 처리 SQL -->
+<!-- 이 메퍼 xml과 연결하려는 매퍼 인터페이스의 전체 경로는 네임 스페이스에 작성해주어야함 -->
+<!-- 순서 내가 하려는  인업데 의 하나를 꺽쇄 하고   테이블 에서 복사해오고 마지막에 ; 세미콜론을 지우기!! -->
+<!-- 이름을 먼저만들고 이름대로 메소드이름만들면됨 안에있는 아이디중에서 동일한걸가지면안되니까 그건 주의 -->
+<!-- resulttype 가 없으면  리턴타입이 업다  즉 void를  인터페이스에써줘야함 -->
+<mapper namespace="test.dao.PersonMapper">
+
+<insert id="insertPerson" parameterType="personVo" >
+insert into  
+    person(
+         num 
+        ,name
+        ,age
+    )values(
+        person_seq.nextval
+        ,#{name}
+        ,#{age}
+    )
+</insert>
+<select id="selectPerson" resultType="personVo">
+select
+     num
+    ,name
+    ,age
+from
+    person
+order by
+    num
+</select>
+
+<select id="selectPersonOne" parameterType="int" resultType="personVo"><!--숫자 int값을 받을거니까    -->
+<!-- 가이드북 12페이지 보면  일부 별칭들은 알아서 매핑된다고 나와있음  뒤의 별칭은 마바 컨피그에 서 있는 별칭으로  -->  
+    select
+        num
+        ,name
+        ,age
+    from
+        person
+    where
+        num = #{num}
+</select>
+
+<delete id="deletePerson" parameterType="int" ><!-- 예는 지워지는거니까  돌려받는게없음 -->
+delete from 
+    person
+    where 
+    num = #{num}
+</delete>
+
+<!--  <update id="updatePerson" parameterType="HashMap" >
+
+
+update person
+    set name = #{name}
+        ,age = #{age}
+where
+    num = #{num}
+and
+	date in (
+    <foreach collection="list" item="var" separator=",">
+    	#{var}
+    </foreach>
+    )
+</update>-->
+<update id="updatePerson" parameterType="personVo">
+update person
+    set name = #{name}
+        ,age = #{age}
+where
+    num = #{num}
+</update>
+
+</mapper>

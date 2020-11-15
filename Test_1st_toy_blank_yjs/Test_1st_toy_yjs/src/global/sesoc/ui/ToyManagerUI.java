@@ -86,13 +86,9 @@ public class ToyManagerUI {
 			int iNum = 0;
 
 			try {
-
 				insertMenu();
-
 				iNum = sc.nextInt();
-
 				if (iNum == 9) {
-
 					return;
 
 				}
@@ -171,13 +167,13 @@ public class ToyManagerUI {
 					}
 					toy = new Bicycle(serialNum, name, price, type);
 					break;
-				case 2:
+					case 2:
 					System.out.print(">> 드론 날개수 입력:");
 					int wingCount = 0;
 					wingCount = sc.nextInt();
 					toy = new Drone(serialNum, name, price, wingCount);
 					break;
-				case 3:
+					case 3:
 					System.out.println(">> 게임콘솔휴대성(Y/N)");
 					boolean isPortable = false;
 					String yn = null;
@@ -228,7 +224,7 @@ public class ToyManagerUI {
 		serialNum = sc.nextLine();
 		boolean res = manager.deleteToy(serialNum);
 		if (res) {
-			System.out.println("[ㄴ삭제성공]");
+			System.out.println("[└삭제성공┐]");
 		} else {
 			System.out.println("[정보] 삭제 대상이 존재하지 않습니다.");
 		}
@@ -245,7 +241,7 @@ public class ToyManagerUI {
 		System.out.print(">최대 검색 :");
 		int maxPrice = sc.nextInt();
 		List<Toy> tList = manager.toyListForPrice(minPrice, maxPrice);
-		System.out.println(minPrice + "까라" + maxPrice + "마데노결과");
+		System.out.println(minPrice + "까라" + maxPrice + "마데 노결과");
 		for (Toy toy : tList) {
 			System.out.println(toy);
 		}

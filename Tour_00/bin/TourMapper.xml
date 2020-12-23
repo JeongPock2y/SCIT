@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- 게시판 처리 SQL -->
+<mapper namespace="Tour.dao.TourMapper">
+
+
+	<!-- <insert id="insertTourarea" parameterType="tour"> insert into tourarea( 
+		name ,fee ,starttime ,closetime ,subwayline )VALUES( #{name} ,#{fee} ,#{starttime} 
+		,#{closetime} ,#{subwayLine} ) </insert> -->
+	<!-- 글 저장 -->
+	<insert id="insertCastle" parameterType="castle" >
+			insert ALL
+			into
+				tourarea
+				(
+				area_name
+				,fee 
+				,starttime
+				,closetime
+				,subwayLine
+				)
+			VALUES(
+				#{area_name}
+				,#{fee}
+				,#{starttime}
+				,#{closetime}
+				,#{subwayLine}
+			)
+			into
+				castle
+				(
+				 area_name
+				 ,birth
+				 ,King
+				)
+			VALUES(
+				#{area_name}
+				,#{birth}
+				,#{king}
+			)
+			select
+			*
+			from dual
+	</insert>
+
+	<insert id="insertPark" parameterType="park">
+		insert all
+		into
+			tourarea
+			(
+				area_name
+				,fee 
+				,starttime
+				,closetime
+				,subwayLine
+				)
+		VALUES(
+			#{area_name}
+			,#{fee}
+			,#{starttime}
+			,#{closetime}
+			,#{subwayLine}
+		)
+		into
+		park(
+		area_name
+		,location
+		,manageOffice
+		)
+		VALUES(
+			#{area_name}
+			,#{location}
+			,#{manageOffice}
+		)
+		SELECT
+			*
+		from
+			dual
+	</insert>
+	
+	<select id="listcaslte" resultType="castle">
+		    select
+                t.area_name as area_name
+				,t.fee as fee
+				,t.starttime as starttime
+				,t.closetime as closetime
+				,t.subwayLine as subwayLine
+				,c.birth as birth
+				,c.king as king
+		 from 
+		 tourarea t , castle c 
+		where 
+		t.area_name = c.area_name
+	</select>
+	<select id="listpark" resultType="park">
+	 select
+                t.area_name as area_name
+				,t.fee as fee
+				,t.starttime as starttime
+				,t.closetime as closetime
+				,t.subwayLine as subwayLine
+				,p.location as location
+				,p.managOffice as manageOffice
+		 from 
+		 tourarea t , park p 
+		where 
+		t.area_name = p.area_name
+	
+	</select>
+	<select id="listAll" parameterType="int" resultType="hashmap">
+		    select
+                t.area_name as area_name
+				,t.fee as fee
+				,t.starttime as starttime
+				,t.closetime as closetime
+				,t.subwayLine as subwayLine
+				<if test="_parameter == 1">
+					,c.birth as birth
+					,c.king as king
+				</if>
+				<if test="_parameter == 2">
+					,p.location as location
+					,p.manageoffice as manageoffice
+				</if>
+		 from 
+		 tourarea t 
+		 <if test="_parameter == 1">
+			 , castle c 
+			where 
+			t.area_name = c.area_name
+		 </if>
+		 <if test="_parameter == 2">
+			 , park p
+			 where 
+			 t.area_name = p.area_name
+		 </if>
+	</select>
+<delete id="deleteTour" parameterType="String">
+delete
+from
+ 				tourarea
+where 
+ 				area_name = #{area_name}
+</delete>
+<update id="updateTour"  parameterType="tour" >
+update  tourarea
+    set 
+    fee = #{fee}
+    , starttime = #{starttime}
+	,closetime =  #{closetime}
+	,subwayLine =  #{subwayLine}    
+      
+where
+   area_name = #{area_name}
+</update>
+	
+	
+</mapper>

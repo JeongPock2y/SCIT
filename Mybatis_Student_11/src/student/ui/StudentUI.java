@@ -43,7 +43,6 @@ public class StudentUI {
 		System.out.println("0. 종료");
 		System.out.print("선택 > ");
 	}
-	
 	//입력 
 	public void input() {
 		String id, name;

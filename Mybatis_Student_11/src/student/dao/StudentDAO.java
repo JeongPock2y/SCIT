@@ -33,16 +33,30 @@ public class StudentDAO {
 
 	// ��ü �б�
 	public ArrayList<Student> selectAll() {
+//		SqlSession ss = null;
+//		ArrayList<Student> list = null;
+//		try {
+//			ss = factory.openSession();
+//			StudentMapper mapper = ss.getMapper(StudentMapper.class);
+//			list = mapper.selectAll();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			if (ss != null) {
+//				ss.close();
+//			}
+//		}
+//		return list;
 		SqlSession ss = null;
 		ArrayList<Student> list = null;
 		try {
-			ss = factory.openSession();
+			ss=factory.openSession();
 			StudentMapper mapper = ss.getMapper(StudentMapper.class);
-			list = mapper.selectAll();
+			list =mapper.selectAll();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			if (ss != null) {
+		}finally {
+			if(ss !=null) {
 				ss.close();
 			}
 		}

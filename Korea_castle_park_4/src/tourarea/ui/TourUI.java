@@ -14,53 +14,81 @@ import tourarea.vo.jp.TourArea_jp;
  * 사용자 인터페이스
  */
 public class TourUI {
+	static int languageNum = 0;
 	Scanner sc = new Scanner(System.in);
 	TourManager manager = new TourManager();
+
 	/**
 	 * 생성자
 	 */
 	public TourUI() {
-		int languageNum = 0;
 		int menuNum = 0;
 		printlanguageMenu();
 		languageNum = sc.nextInt();
 		if (languageNum == 1) {
 			System.out.println("한국어를 선택하셨습니다");
-			
+
 			while (true) {
-				
-				printMainMenu();
+				printMainMenu(languageNum);
 				try {
 					menuNum = sc.nextInt();
 					switch (menuNum) {
-					case 1:add();break;
-					case 2:search();break;
-					case 3:delete();break;
-					case 4:update();break;
-					case 0:exit();return;
-					default:System.out.println("[오류] 다시 선택하세요.");}
+					case 1:
+						add();
+						break;
+					case 2:
+						search();
+						break;
+					case 3:
+						delete();
+						break;
+					case 4:
+						update();
+						break;
+					case 0:
+						exit();
+						return;
+					default:
+						System.out.println("[오류] 다시 선택하세요.");
+					}
 				} catch (Exception e) {
 					System.out.println("[오류] 입력형식이 잘못되었습니다.");
 					sc.nextLine();
-				}}}
-		else if(languageNum==2){
+				}
+			}
+		} else if (languageNum == 2) {
 			System.out.println("日本語を選択しました.");
 			while (true) {
-				printMainMenuJP();
+//				printMainMenuJP(languageNum);
 				try {
 					menuNum = sc.nextInt();
 					switch (menuNum) {
-					case 1:addJP();break;
-					case 2:searchJP();break;
-					case 3:deleteJP();break;
-					case 4:updateJP();break;
-					case 0:exitJP();return;
-					default:System.out.println("[ERROR] をもう一度選択してください。");}
+					case 1:
+						addJP();
+						break;
+					case 2:
+						searchJP();
+						break;
+					case 3:
+						deleteJP();
+						break;
+					case 4:
+						updateJP();
+						break;
+					case 0:
+						exitJP();
+						return;
+					default:
+						System.out.println("[ERROR] をもう一度選択してください。");
+					}
 				} catch (Exception e) {
 					System.out.println("[ERROR] 入力形式が正しくありません。");
 					sc.nextLine();
-				}}}
+				}
+			}
 		}
+	}
+
 	public void printlanguageMenu() {
 		System.out.println("****LANGUAGE****");
 		System.out.println("*****SELECT********");
@@ -68,27 +96,32 @@ public class TourUI {
 		System.out.println("\t2.JAPAN\t");
 		System.out.print(">>Insert Num>> ");
 	}
-	
-	public void printMainMenu() {
-		System.out.println();
-		System.out.println("  *관광지에 대해 알아보자!!* ");
-		System.out.println("│\t1. 관광지 입력\t\t│");
-		System.out.println("│\t2. 관광지 검색\t\t│");
-		System.out.println("│\t3. 관광지 삭제\t\t│");
-		System.out.println("│\t4. 관광지 수정\t\t│");
-		System.out.println("└\t0. 프로그램 종료\t\t┘");
-		System.out.print("** 번호 선택 > ");
+
+	public void printMainMenu(int languageNum) {
+		if (languageNum == 1) {
+			System.out.println();
+			System.out.println("  *관광지에 대해 알아보자!!* ");
+			System.out.println("│\t1. 관광지 입력\t\t│");
+			System.out.println("│\t2. 관광지 검색\t\t│");
+			System.out.println("│\t3. 관광지 삭제\t\t│");
+			System.out.println("│\t4. 관광지 수정\t\t│");
+			System.out.println("└\t0. 프로그램 종료\t\t┘");
+			System.out.print("** 번호 선택 > ");
+		}else if (languageNum == 2) {
+			System.out.println();
+			System.out.println("  観光地について調べてみよう！ ");
+			System.out.println("│\t1. 観光地入力\t\t│");
+			System.out.println("│\t2. 観光地検索\t\t│");
+			System.out.println("│\t3. 観光地削除\t\t│");
+			System.out.println("│\t4. 観光地修正\t\t│");
+			System.out.println("└\t0. プログラム終了\t\t┘");
+			System.out.print("** 番号選択 > ");
+		}
 	}
-	public void printMainMenuJP() {
-		System.out.println();
-		System.out.println("  観光地について調べてみよう！ ");
-		System.out.println("│\t1. 観光地入力\t\t│");
-		System.out.println("│\t2. 観光地検索\t\t│");
-		System.out.println("│\t3. 観光地削除\t\t│");
-		System.out.println("│\t4. 観光地修正\t\t│");
-		System.out.println("└\t0. プログラム終了\t\t┘");
-		System.out.print("** 番号選択 > ");
-	}
+
+//	public void printMainMenuJP() {
+//	}
+
 	public void add() {
 		TourArea tourarea = null;
 		System.out.println();
@@ -96,7 +129,7 @@ public class TourUI {
 		System.out.println("1. 궁");
 		System.out.println("2. 공원");
 		System.out.print("등록할 타입을 골라주세요>>");
-		int inum=sc.nextInt();
+		int inum = sc.nextInt();
 		sc.nextLine();
 		System.out.print("이름을 입력>>>");
 		String name = sc.nextLine();
@@ -111,18 +144,18 @@ public class TourUI {
 		System.out.print("주차 유무(Y/N)>>>");
 		String pk = sc.next();
 		boolean parking = false;
-		if(pk.equalsIgnoreCase("y")) {
-			parking =true;
-		}else {
+		if (pk.equalsIgnoreCase("y")) {
+			parking = true;
+		} else {
 			parking = false;
 		}
 		System.out.print("언어 선택 해주세요 (KOR // JAP) : ");
 		String language = sc.nextLine();
-		switch(inum){
-		case 1 : 
+		switch (inum) {
+		case 1:
 			sc.nextLine();
 			System.out.print("지어진 연(년)도>>>");
-			int birth =sc.nextInt();
+			int birth = sc.nextInt();
 			sc.nextLine();
 			System.out.print("사용한 시대의 왕이름>>>");
 			String king = sc.nextLine();
@@ -130,7 +163,7 @@ public class TourUI {
 			manager.insertTour(tourarea);
 			System.out.println("궁(성)의 정보가 저장되었음");
 			break;
-		case 2 :
+		case 2:
 			sc.nextLine();
 			System.out.print("위치(주소)를 입력해 주세요>>");
 			String location = sc.nextLine();
@@ -140,8 +173,9 @@ public class TourUI {
 			manager.insertTour(tourarea);
 			System.out.println("공원의 정보가 저장되었습니다.");
 			break;
-			}
 		}
+	}
+
 	public void addJP() {
 		TourArea_jp tourarea = null;
 		System.out.println();
@@ -149,7 +183,7 @@ public class TourUI {
 		System.out.println("1. 宮");
 		System.out.println("2. 公園");
 		System.out.print("登録するタイプを選んでください>>");
-		int inum=sc.nextInt();
+		int inum = sc.nextInt();
 		sc.nextLine();
 		System.out.print("名前を入力>>>");
 		String name = sc.nextLine();
@@ -164,16 +198,16 @@ public class TourUI {
 		System.out.print("駐車有無(Y/N)>>>");
 		String pk = sc.next();
 		boolean parking = false;
-		if(pk.equalsIgnoreCase("y")) {
-			parking =true;
-		}else {
+		if (pk.equalsIgnoreCase("y")) {
+			parking = true;
+		} else {
 			parking = false;
 		}
-		switch(inum){
-		case 1 : 
+		switch (inum) {
+		case 1:
 			sc.nextLine();
 			System.out.print("建設年度入力>>>");
-			int birth =sc.nextInt();
+			int birth = sc.nextInt();
 			sc.nextLine();
 			System.out.print("使った時代の王の名前>>>");
 			String king = sc.nextLine();
@@ -181,7 +215,7 @@ public class TourUI {
 			manager.insertTour_jp(tourarea);
 			System.out.println("宮(城)の情報が保存されている");
 			break;
-		case 2 :
+		case 2:
 			sc.nextLine();
 			System.out.print("住所を入力してください。>>");
 			String location = sc.nextLine();
@@ -191,8 +225,9 @@ public class TourUI {
 			manager.insertTour_jp(tourarea);
 			System.out.println("公園の情報が保存されました。");
 			break;
-			}
 		}
+	}
+
 	public void delete() {
 		String id = null;
 		System.out.println();
@@ -206,6 +241,7 @@ public class TourUI {
 			System.out.println("[정보] 삭제 대상이 존재하지 않습니다.");
 		}
 	}
+
 	public void deleteJP() {
 		String id = null;
 		System.out.println();
@@ -219,6 +255,7 @@ public class TourUI {
 			System.out.println("[정보] 삭제 대상이 존재하지 않습니다.");
 		}
 	}
+
 	public void update() {
 		TourArea tourarea = null;
 		String id = null;
@@ -254,6 +291,7 @@ public class TourUI {
 			System.out.println("[정보] 수정 실패했습니다.");
 		}
 	}
+
 	public void updateJP() {
 		TourArea_jp tourarea = null;
 		String id = null;
@@ -288,13 +326,14 @@ public class TourUI {
 			System.out.println("修正に失敗しました。");
 		}
 	}
+
 	public void search() {
 		int num = 0;
-		int min=0;
-		int max=0;
-		int subwayline=0;
+		int min = 0;
+		int max = 0;
+		int subwayline = 0;
 		ArrayList<TourArea> list = null;
-		TourArea tourarea =null;
+		TourArea tourarea = null;
 		try {
 			System.out.println();
 			System.out.println("[ 검색 ]");
@@ -313,14 +352,14 @@ public class TourUI {
 			case 3:
 				list = manager.tourAreaListForType(num);
 				break;
-			case 4 ://성
+			case 4:// 성
 				sc.nextLine();
 				System.out.print("찾을 궁(성)의 이름을 입력해주세요 : ");
 				String Cname = sc.nextLine();
 				tourarea = manager.searchId(Cname);
 				System.out.println(tourarea);
 				break;
-			case 5 ://공원
+			case 5:// 공원
 				sc.nextLine();
 				System.out.print("찾을 공원이름을 입력해주세요 : ");
 				String Pname = sc.nextLine();
@@ -344,13 +383,14 @@ public class TourUI {
 			sc.nextLine();
 		}
 	}
+
 	public void searchJP() {
 		int num = 0;
 		int min = 0;
 		int max = 0;
-		int subwayline=0;
+		int subwayline = 0;
 		ArrayList<TourArea_jp> list = null;
-		TourArea_jp tourarea =null;
+		TourArea_jp tourarea = null;
 		try {
 			System.out.println();
 			System.out.println("[ 検索 ]");
@@ -374,14 +414,14 @@ public class TourUI {
 				subwayline = sc.nextInt();
 				list = manager.tourAreaListSubway_jp(subwayline);
 				break;
-			case 5 ://성
+			case 5:// 성
 				sc.nextLine();
 				System.out.print("探す宮の名前を入力してください: ");
 				String Cname = sc.nextLine();
 				tourarea = manager.searchId_jp(Cname);
 				System.out.println(tourarea);
 				break;
-			case 6 ://공원
+			case 6:// 공원
 				sc.nextLine();
 				System.out.print("検索する公園名を入力してください:");
 				String Pname = sc.nextLine();
@@ -414,6 +454,7 @@ public class TourUI {
 		System.out.println();
 		System.out.println("총 " + list.size() + "건의 검색 결과가 있습니다.");
 	}
+
 	public void printJP(ArrayList<TourArea_jp> list) {
 		System.out.println();
 		if (list == null || list.size() == 0) {
@@ -426,11 +467,13 @@ public class TourUI {
 		System.out.println();
 		System.out.println("全部で " + list.size() + "件の検索結果があります");
 	}
+
 	public void exit() {
 		System.out.println("프로그램을 종료합니다.");
 		System.out.println("감사합니다.");
 		return;
 	}
+
 	public void exitJP() {
 		System.out.println("プログラムを終了します.");
 		System.out.println("有難う御座います.");

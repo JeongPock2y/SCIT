@@ -13,6 +13,7 @@ public class ExceptionTest {
 		LOG.severe("severe Log");
 		LOG.warning("warning Log");
 		LOG.info("info Log");
+		
 		/*
 		 * public static void main(String[] args) { try { // 예외 발생 가능성 코드
 		 * makeException(); } catch (ArithmeticException e){ // 예외 발생 처리 코드1

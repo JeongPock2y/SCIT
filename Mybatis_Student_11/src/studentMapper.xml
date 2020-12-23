@@ -16,25 +16,27 @@
 		,eng
 		,mat
 		)VALUES(
-		#{id}
-		,#{name}
-		,#{kor}
-		,#{eng}
-		,#{mat}
+			#{id}
+			,#{name}
+			,#{kor}
+			,#{eng}
+			,#{mat}
 		)
 	</insert>
 
 	<!-- 전체 학생 목록 읽기 -->
-	<select id="selectAll" resultType="student.vo.Student">
+	<select id="selectAll" resultType="Student">
 	select
 		id
 		, name
 		, kor
 		, eng 
 		, mat 
-		, avg 
-	from
-		student s 
+	    ,trunc((kor+eng+mat)/3,2) as avg      
+    FROM
+        student
+    order by
+        id
 		
 	</select>
 
@@ -66,11 +68,14 @@
 			,kor
 			,eng
 			,mat
-			,avg
+			,trunc((kor+eng+mat)/3,2) as avg
 		from
 			student
 		where
-			name = #{name}
+			<!--name = #{name}  -->
+			upper(name)  like '%'||upper(#{name})||'%'
+		order by
+			name
 	</select>
 
 </mapper>

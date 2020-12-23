@@ -3,7 +3,7 @@ package student.vo;
 /**
  * 개인 정보를 저장할 VO 클래스
  */
-public class Student extends PersonVO{
+public class Student{
 	private String id;				//학번
 	private String name;			//이름
 	private int kor;				//국어점수
@@ -12,11 +12,8 @@ public class Student extends PersonVO{
 	private double avg;				//평균점수
 	
 	public Student() {
-		int a = 10;
-		System.out.println(10);
+		
 	}
-
-	
 	public Student(String id, String name, int kor, int eng, int mat) {
 		
 		this.id = id;
@@ -67,7 +64,7 @@ public class Student extends PersonVO{
 	}
 
 	public double getAvg() {
-		avg= ((kor+eng+mat)/3.0);
+		//avg= ((kor+eng+mat)/3.0);
 		return avg;
 	}
 

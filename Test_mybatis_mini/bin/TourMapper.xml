@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 도서 정보 처리 SQL -->
+<mapper namespace="tour.dao.TourMapper">
+
+<!-- 도서 정보 저장 -->
+<insert id="insertBook" parameterType="tour">
+insert into 
+	book (
+	bnum
+	, title
+	,author
+	,publisher
+	,price
+	)values (
+	boardseq.nextval
+	, #{title}
+	, #{author}
+	, #{publisher}
+	,#{price}
+	)
+</insert>
+
+<!-- 전체 도서 목록 읽기 -->
+<select id="listAll" resultType="tour">
+select 
+	
+from 
+	
+order by 
+
+</select>
+
+<!-- 번호로 도서정보 찾기 -->
+<select id="getBook" parameterType="int" resultType="tour">
+
+</select>
+
+<!-- 번호로 삭제하기 -->
+<delete id="deleteBook" parameterType="tour">
+
+</delete>
+
+<!-- 검색하기 -->
+<select id="searchBook" parameterType="String" resultType="tour">
+
+</select>
+
+<!-- 출판사별 검색 -->
+<select id="searchPublisher" resultType="tour">
+
+</select>
+
+
+</mapper>
